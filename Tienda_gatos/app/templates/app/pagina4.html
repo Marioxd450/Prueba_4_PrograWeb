@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+      integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+      integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+      crossorigin="anonymous"
+    ></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>pagina4</title>
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <header class="header">
+          <div class="logo">
+          <img src="{% static 'app/img/logo_pagina.png' %}" id="logo_patas" alt="logo_pagina" >
+      </div>
+      <div class="navegacion">
+          <ul class="nav justify-content-end">
+              <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'index'%}">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contacto'%}">Quiero que me contacten</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'tienda'%}">Productos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'api'%}">Una pelicula para ti</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'agregar_producto'%}">Agregar Productos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'listar_productos'%}">Lista de Productos</a>
+              </li>
+              {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">cerrar sesión</a>
+                </li>
+                <li>
+                    <a href="#">@{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">iniciar sesión</a>
+                </li>
+                {% endif %}
+                <li></li>
+          </ul>
+      </div>
+  </header>
+  </div>
+
+    <aside class="aside aside-2">
+      <h2>Película para ver junto a tú mascota</h2>
+      <p>
+        Como sabemos que te encanta tú mascota y las películas, te dejamos
+        una sugerencia de superheroes y diversión , esperamos que sea de tu agrado para pasar el rato
+        junto a ella, gozando de tranquilidad y amor.
+      </p>
+      <button id="#btn-cargar">cargar peliculas</button>
+      <div id="#peliculas"></div>
+    </aside>
+
+    <footer class="footer">
+      <div class="footer__addr">
+        <h1 class="footer__logo">sobre nosotros</h1>
+
+        <h2>Contacto</h2>
+
+        <address>
+          Av. Apoquindo 1529<br />
+
+          <a class="footer__btn" href="mailto:example@gmail.com">Hablanos</a>
+        </address>
+      </div>
+
+      <ul class="footer__nav">
+        <li class="nav__item">
+          <h2 class="nav__title">Media</h2>
+
+          <ul class="nav__ul">
+            <li>
+              <a href="#">Online</a>
+            </li>
+
+            <li>
+              <a href="#">Imprimir</a>
+            </li>
+
+            <li>
+              <a href="#">Publicidad</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav__item nav__item--extra">
+          <h2 class="nav__title">Tecnología</h2>
+
+          <ul class="nav__ul nav__ul--extra">
+            <li>
+              <a href="#">Diseño Hardware</a>
+            </li>
+
+            <li>
+              <a href="#">Diseño Software</a>
+            </li>
+
+            <li>
+              <a href="#">Automatización</a>
+            </li>
+
+            <li>
+              <a href="#">Inteligencia Artificial</a>
+            </li>
+
+            <li>
+              <a href="#">AUX</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav__item">
+          <h2 class="nav__title">Legalidad</h2>
+
+          <ul class="nav__ul">
+            <li>
+              <a href="#">Politicas de Privacidad</a>
+            </li>
+
+            <li>
+              <a href="#">Terminos de Uso</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="legal">
+        <p>&copy; 2022 CopyRight. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'app/js/api_foto_random.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+
+    <title>Productos</title>
+</head>
+
+<body>
+    
+    <div class="contenedor">
+        <header class="header">
+            <div class="logo">
+            <img src="{% static 'app/img/logo_pagina.png' %}" id="logo_patas" alt="logo_pagina" >
+        </div>
+        <div class="navegacion">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index'%}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto'%}">Quiero que me contacten</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tienda'%}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'api'%}">Una pelicula para ti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_producto'%}">Agregar Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_productos'%}">Lista de Productos</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">cerrar sesión</a>
+                </li>
+                <li>
+                    <a href="#">@{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">iniciar sesión</a>
+                </li>
+                {% endif %}
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    </div>
+        
+        <aside class="aside aside-5">
+            <img class="perro_comiendo" src="{% static 'app/img/perro-comiendo.jpg'%}" alt="Perro comiendo">
+        </aside>
+        <aside class="aside aside-6">
+            <h2>Productos</h2>
+        <div class="productos">
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/Saco_de_comida.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Saco de Comida Perro Adulto</h2>
+                        <h3>$12.990</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/hueso_360-360.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Hueso Perro</h2>
+                        <h3>$4.990 </h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/473028-360-360.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Saco de Comida Perro Adulto</h2>
+                        <h3>$10.990 </h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/356125-360-360.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Comida de Alta Nutricion Perro</h2>
+                        <h3>$3.990 </h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/pelotas360-360.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Juego de 3 pelotas</h2>
+                        <h3>$7.990</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="producto">
+
+                <div class="contenedor_producto">
+
+                    <img src="{% static 'app/img/productos/tarro_perrowebp.jpg'%}" alt="imagen producto">
+                    <div class="detalle">
+                        
+                        <h2>Comida en lata para Perro Adulto</h2>
+                        <h3>$12.990</h3>
+                    </div>
+
+                </div>
+
+            </div>
+        </aside>
+
+        </div>
+        
+        
+            <footer class="footer">
+                
+                    <div class="footer__addr">
+                    <h1 class="footer__logo">sobre nosotros</h1>
+                    
+                    <h2>Contacto</h2>
+                    
+                    <address>
+                        Av. Apoquindo 1529<br>
+                            
+                        <a class="footer__btn" href="mailto:example@gmail.com">Hablanos</a>
+                    </address>
+                    </div>
+                    
+                    <ul class="footer__nav">
+                    <li class="nav__item">
+                    <h2 class="nav__title">Media</h2>
+            
+                        <ul class="nav__ul">
+                        <li>
+                            <a href="#">Online</a>
+                        </li>
+                
+                        <li>
+                            <a href="#">Imprimir</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Publicidad</a>
+                        </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav__item nav__item--extra">
+                        <h2 class="nav__title">Tecnología</h2>
+                        
+                        <ul class="nav__ul nav__ul--extra">
+                        <li>
+                            <a href="#">Diseño Hardware</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Diseño Software</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Automatización</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Inteligencia Artificial</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">AUX</a>
+                        </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav__item">
+                        <h2 class="nav__title">Legalidad</h2>
+                        
+                        <ul class="nav__ul">
+                        <li>
+                            <a href="#">Politicas de Privacidad</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#">Terminos de Uso</a>
+                        </li>
+                        </ul>
+                    </li>
+                    </ul>
+                    
+                    <div class="legal">
+                    <p>&copy; 2022 CopyRight. Todos los derechos reservados.</p>
+                    </div>
+                    
+                </footer>
+            
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                
+        
+    
+
+</body>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    {% load humanize %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenedor">
+        <header class="header">
+            <div class="logo">
+            <img src="{% static 'app/img/logo_pagina.png' %}" id="logo_patas" alt="logo_pagina" >
+        </div>
+        <div class="navegacion">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index'%}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto'%}">Quiero que me contacten</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tienda'%}">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'api'%}">Una pelicula para ti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_producto'%}">Agregar Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_productos'%}">Lista de Productos</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">cerrar sesión</a>
+                </li>
+                <li>
+                    <a href="#">@{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">iniciar sesión</a>
+                </li>
+                {% endif %}
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    </div>
+    
+    <div class="row" style="width:43%;margin-inline: auto;">
+    <div class="card">
+        <div class="card-body">
+            <h2>Lista de Productos</h2>
+            <hr>
+            <table class="table table-striped table-hover table-responsive-sm">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Marca</th>
+                    <th>Opciones</th>
+                    
+                </tr>
+                {% for p in productos %}
+        
+                <tr>
+                    <td>{{ p.nombre | title }}</td>
+                    <td>${{ p.precio | intcomma }}</td>
+                    <td>{{ p.marca | title }}</td>
+                    <td>
+                        <a href="{% url 'modificar_producto' p.id %}" class="btn btn-info btn-sm" >Editar</a>
+                        <a href="{% url 'eliminar_producto' p.id %}" class="btn btn-danger btn-sm" >Eliminar</a>
+
+                    </td>
+                </tr>
+        
+                {% endfor %}
+            
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
