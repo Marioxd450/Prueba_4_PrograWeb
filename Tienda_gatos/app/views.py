@@ -3,15 +3,15 @@ from pyexpat.errors import messages
 from ssl import AlertDescription
 import django
 from django.shortcuts import render, redirect , get_object_or_404
-from .models import Producto
-from.forms import ProductoForm, CustomUserCreationForm
+from .models import Perrito, Producto 
+from.forms import ProductoForm, CustomUserCreationForm, PerritoForm
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.contrib.auth import authenticate, login
-from .serializers import ProductoSerializer
+from .serializers import ProductoSerializer , PerritoSerializer
 from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework import status
@@ -30,11 +30,24 @@ def producto_collection(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET','POST'])
+def perrito_collection(request):
+    if request.method == 'GET':
+        perrito = Perrito.objects.all()
+        serializer = PerritoSerializer(perrito, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = PerritoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def producto_element(request, pk):
     producto = get_object_or_404(Producto, id=pk)
- 
+
     if request.method == 'GET':
         serializer = ProductoSerializer(producto)
         return Response(serializer.data)
@@ -45,6 +58,25 @@ def producto_element(request, pk):
     elif request.method == 'PUT': 
         producto_new = JSONParser().parse(request) 
         serializer = ProductoSerializer(producto, data=producto_new) 
+        if serializer.is_valid(): 
+            serializer.save() 
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+def perrito_element(request, pk):
+    perrito = get_object_or_404(Perrito, id=pk)
+
+    if request.method == 'GET':
+        serializer = PerritoSerializer(perrito)
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        perrito.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    elif request.method == 'PUT': 
+        perrito_new = JSONParser().parse(request) 
+        serializer = PerritoSerializer(perrito, data=perrito_new) 
         if serializer.is_valid(): 
             serializer.save() 
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -126,3 +158,50 @@ def registro(request):
         data["form"] = formulario
         
     return render (request,'registration/registro.html', data)
+
+
+
+def agregar_perrito(request):
+    
+    data = {
+        'form': PerritoForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = PerritoForm (data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Guardado Correctamente"
+        else:
+            data["form"] = formulario
+    
+    return render(request, 'app/donar/agregar_perritos.html', data)
+
+def listar_perritos(request):
+    perrito = Perrito.objects.all()
+    data = {
+        'perritos': perrito
+    }
+    return render(request, 'app/donar/listar_perritos.html', data)
+
+def modificar_perrito(request, id):
+    
+    perrito = get_object_or_404(Perrito, id=id)
+    
+    data = {
+        'form' : PerritoForm (instance=perrito)
+    }
+    
+    if request.method == 'POST':
+        formulario = PerritoForm (data=request.POST,instance= perrito, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_perritos")
+        data["form"] = formulario
+    
+    return render(request, 'app/donar/modificar_perritos.html', data)
+
+def eliminar_perrito(request, id):
+    perrito = get_object_or_404( Perrito, id=id)
+    perrito.delete()
+    return redirect(to="listar_perritos")

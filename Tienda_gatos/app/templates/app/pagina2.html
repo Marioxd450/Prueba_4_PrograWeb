@@ -38,6 +38,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'listar_productos'%}">Lista de Productos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_perritos'%}">Lista de Perritos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_perrito'%}">Dar mi perrito</a>
+                </li>
                 {% if user.is_authenticated %}
                 <li>
                     <a href="{% url 'logout' %}">cerrar sesión</a>

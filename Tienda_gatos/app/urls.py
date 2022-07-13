@@ -1,5 +1,5 @@
 from django.urls import path , include
-from .views import home, index, pagina2, pagina3, pagina4, agregar_producto, listar_productos , modificar_producto, eliminar_producto , registro, producto_collection, producto_element
+from .views import home, index, pagina2, pagina3, pagina4, agregar_producto, listar_productos , modificar_producto, eliminar_producto , perrito_element , registro, producto_collection, producto_element , perrito_collection , agregar_perrito ,listar_perritos, modificar_perrito, eliminar_perrito
 from rest_framework.decorators import api_view
 
 
@@ -18,5 +18,11 @@ urlpatterns = [
     path('registro/', registro, name="registro"),
     path('apii/',  producto_collection , name='producto_collection'),
     path('apii/<int:pk>/', producto_element ,name='producto_element'),
+    path('apiii/',  perrito_collection , name='perrito_collection'),
+    path('apiii/<int:pk>/', perrito_element ,name='perrito_element'),
+    path('agregar-perritos/', agregar_perrito, name="agregar_perrito"),
+    path('listar-perritos/',listar_perritos, name="listar_perritos"),
+    path('modificar-perritos/<id>/', modificar_perrito, name="modificar_perrito"),
+    path('eliminar-perritos/<id>/',eliminar_perrito, name="eliminar_perrito"),
 ]
 
